@@ -14,6 +14,12 @@ printf() using diff
 - the second will use assert and compare the return of your ft_printf() and the
 real one.
 
+when auto-generating .c code, with the full set of flags from the subject
+("*0.- '#+lhllhh") a function testing 'f' or 'g' can have up to 120 000 lines
+in which half are ft_printf calls with different flags combinations. Therefore
+the compile time can go up to a minute. do not try to compile all the "nfge"
+bonuses all together. unless you want a ☕️
+
 keep in mind that this tester excludes in the generation process of *.c files
 any case resulting in a warning at compile time. Also it dont check for leaks.
 The code ccould be addapted to testing extra extra flags and extr extra
