@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_lover_test_func.h                        :+:      :+:    :+:   */
+/*   printf_lover_test_func.h                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: charmstr <charmstr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/08 23:55:17 by charmstr          #+#    #+#             */
-/*   Updated: 2019/12/08 23:55:19 by charmstr         ###   ########.fr       */
+/*   Created: 2019/12/13 19:00:12 by charmstr          #+#    #+#             */
+/*   Updated: 2019/12/13 19:00:14 by charmstr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@
 # define RED "\033[38;5;1m"
 # define CLEAR "\033[0m"
 
-void	ft_putstr_fd(char *s, int fd);
-size_t	ft_strlen(const char *s);
-void	ft_putchar_fd(char c, int fd);
+void	my_ft_putstr_fd(char *s, int fd);
+size_t	my_ft_strlen(const char *s);
+void	my_ft_putchar_fd(char c, int fd);
 int		failure(char *str);
-char	*ft_strdup(const char *s1);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-void	ft_putnbr_fd(int n, int fd);
+char	*my_ft_strdup(const char *s1);
+int		my_ft_strncmp(const char *s1, const char *s2, size_t n);
+void	my_ft_putnbr_fd(int n, int fd);
 
 int		test_func_c(int c);
 int		test_func_s(const char *s);
