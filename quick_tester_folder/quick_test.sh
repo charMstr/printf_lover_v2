@@ -6,11 +6,11 @@ then
 	exit
 fi
 
-cp -rf  ./sandbox/main_test.c ./sandbox/main_test_ft.c
+cp -rf  ./main_test.c ./sandbox/main_test_ft.c
 sed -i '' '16,$s/printf/ft_printf/g' ./sandbox/main_test_ft.c
 make
 make clean
-gcc -Wall -Wextra -Werror -g -fsanitize=address ./sandbox/main_test.c libftprintf.a -o ./sandbox/real_printf
+gcc -Wall -Wextra -Werror -g -fsanitize=address ./main_test.c libftprintf.a -o ./sandbox/real_printf
 gcc -Wall -Werror -Wextra -g -fsanitize=address ./sandbox/main_test_ft.c libftprintf.a -o ./sandbox/my_ft_printf
 
 #no use of the fsanitize flags when checking onto the % special case.
