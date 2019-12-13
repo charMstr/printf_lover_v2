@@ -6,7 +6,7 @@
 /*   By: charmstr <charmstr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/02 23:24:12 by charmstr          #+#    #+#             */
-/*   Updated: 2019/12/13 19:06:21 by charmstr         ###   ########.fr       */
+/*   Updated: 2019/12/13 20:27:34 by charmstr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,12 @@ int writing_test_call(int fd_w, char *line, char *specifier, int *count)
 	ft_putstr_fd("\tmy_ft_putstr_fd(\"", fd_w);
 	if (!(debug = ft_stringify(line)))
 		return (0);
-	modify_for_debug(&debug);
+	debug[0] = 'P';
 	ft_putstr_fd(debug, fd_w);
 	ft_putstr_fd("\t==>\t", fd_w);
 	ft_putendl_fd("\", 1);", fd_w);
 	ft_putstr_fd("\t", fd_w);
 	ft_putendl_fd(line, fd_w);
-	//if (!ft_strncmp(specifier, "n", 1))
-	//{
-		//(*count)++;
-		//ft_putendl_fd("\tprintf(\"%d\\n\", n);", fd_w);
-	//}
 	if (!ft_strncmp(specifier, "n", 1))
 	{
 		(*count)++;
@@ -89,31 +84,6 @@ int writing_assert_call(int fd_w, char *line, int *count)
 	ft_putendl_fd(");", fd_w);
 	(*count)++;
 	return (1);
-}
-
-/*
-** note:	this function for debug purpose will change "%" into "P" and the
-**			first "p" of "printf" into "P" as well. we had to do this since
-**			in the first place we tried to do a putstr on the line that was
-**			calling a printf as well--> outputs were not synchronized. then we
-**			falled back onto using printf but we know have to make percent
-**			disapear.
-**
-** RETURN:	void
-*/
-
-void	modify_for_debug(char **str)
-{
-	int i;
-
-	i = 0;
-	str[0][0] = 'P';
-	while (str[0][i])
-	{
-		if (str[0][i] == '%')
-			str[0][i] = 'P';
-		i++;
-	}
 }
 
 /*

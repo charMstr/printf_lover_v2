@@ -9,6 +9,11 @@ fi
 cp -rf  ./main_test.c ./sandbox/main_test_ft.c
 sed -i '' '16,$s/printf/ft_printf/g' ./sandbox/main_test_ft.c
 make
+if [ "$?" != 0 ]
+then
+	printf "\033[31mfailure to compile, you need to have ALL your project files here\n\033[m"
+	exit
+fi
 make clean
 gcc -Wall -Wextra -Werror -g -fsanitize=address ./main_test.c libftprintf.a -o ./sandbox/real_printf
 gcc -Wall -Werror -Wextra -g -fsanitize=address ./sandbox/main_test_ft.c libftprintf.a -o ./sandbox/my_ft_printf
