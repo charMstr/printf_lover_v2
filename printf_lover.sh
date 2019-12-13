@@ -3,7 +3,7 @@
 . ./config.sh
 TESTER_DIR=`pwd`
 IMPORTED_FILES_PATH=$TESTER_DIR/utils/copy_in_here_ft_printf_files
-OUTPUTS_PATH=./
+OUTPUTS_PATH=./outputs
 GENERATION_TESTS_PATH=$TESTER_DIR/utils/auto_generation_tests
 GENERATED_TESTS_PATH=$TESTER_DIR/utils/generated_tests
 GENERATED_USER_TESTS_PATH=$GENERATED_TESTS_PATH/generated_tests_usr_version
