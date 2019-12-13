@@ -6,7 +6,7 @@
 /*   By: charmstr <charmstr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/02 23:24:12 by charmstr          #+#    #+#             */
-/*   Updated: 2019/12/13 14:52:58 by charmstr         ###   ########.fr       */
+/*   Updated: 2019/12/13 19:06:21 by charmstr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int writing_test_call(int fd_w, char *line, char *specifier, int *count)
 {
 	char	*debug;
 
-	ft_putstr_fd("\tft_putstr_fd(\"", fd_w);
+	ft_putstr_fd("\tmy_ft_putstr_fd(\"", fd_w);
 	if (!(debug = ft_stringify(line)))
 		return (0);
 	modify_for_debug(&debug);
@@ -55,8 +55,8 @@ int writing_test_call(int fd_w, char *line, char *specifier, int *count)
 	if (!ft_strncmp(specifier, "n", 1))
 	{
 		(*count)++;
-		ft_putstr_fd("\tft_putnbr_fd(n, 1);\n", fd_w);
-		ft_putstr_fd("ft_putstr_fd(\"\\n\", 1);\n", fd_w);
+		ft_putstr_fd("\tmy_ft_putnbr_fd(n, 1);\n", fd_w);
+		ft_putstr_fd("my_ft_putstr_fd(\"\\n\", 1);\n", fd_w);
 	}
 	free(debug);
 	return (1);
