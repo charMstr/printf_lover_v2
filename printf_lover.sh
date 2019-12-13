@@ -61,16 +61,10 @@ function rebuild_c_files_according_to_options()
 	cd $TESTER_DIR
 }
 
-function import_project_files()
-{
-	cp -rf $PATH_TO_USER_PROJECT/* $IMPORTED_FILES_PATH
-}
-
 function compiling_usr_printf_and_import_files()
 {
-	import_project_files
+	cd $PATH_TO_USER_PROJECT
 	printf "\ncompiling your libftprintf.a...\n"
-	cd $IMPORTED_FILES_PATH
 	make &> /dev/null
 	if [ ! -f *.a  ]
 	then
@@ -81,14 +75,19 @@ function compiling_usr_printf_and_import_files()
 	cp $LIB_A $GENERATED_USER_TESTS_PATH/sources/
 	cp $LIB_A $ASSERT_TESTS_PATH/sources/
 
+	for G in `ls *.h */*.h 2> /dev/null`
+	do
+		cp $G $IMPORTED_FILES_PATH	
+	done
+	cd $IMPORTED_FILES_PATH
 	for K in `ls *.h */*.h 2> /dev/null`
 	do
-		if [ "$K" != "libft/libft.h" ]
+		if [ "$K" != "libft.h" ]
 		then
 			sed -i '' 's/.*libft.*/#include \"..\/includes\/libft.h\"/' $K
 		fi
-		cp -p $K $GENERATED_USER_TESTS_PATH/includes
-		cp -p $K $ASSERT_TESTS_PATH/includes
+		cp $K $GENERATED_USER_TESTS_PATH/includes
+		cp $K $ASSERT_TESTS_PATH/includes
 	done
 	cd $TESTER_DIR
 }
