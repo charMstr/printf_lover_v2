@@ -1,12 +1,10 @@
 #!/bin/sh
 
+cd ./utils
 cd ./auto_generation_tests/
 make fclean
-cd ../
-cd ./sandbox/
-rm [^d]*
-cd ../
-cd ./generated_tests/
+cd ../tmp_files/
+cd ../generated_tests/
 make fclean
 rm *.mk
 rm sources/test*.c
@@ -19,4 +17,3 @@ make fclean
 rm sources/test*
 rm sources/*.a
 rm *.mk
-
