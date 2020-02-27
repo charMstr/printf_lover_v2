@@ -32,7 +32,7 @@ function update_programs()
 	cd $GENERATED_USER_TESTS_PATH
 	for j in sources/test*.c
 	do
-		sed -i '' '8,100000s/printf/ft_printf/g' $j 
+		sed -i '' '8,$s/printf/ft_printf/g' $j 
 		for HEY in `ls includes/*.h`
 		do
 			printf "%s\n" 5 i "#include \"../$HEY\"" . w | ed $j &> /dev/null
@@ -84,7 +84,7 @@ function compiling_usr_printf_and_import_files()
 	do
 		if [ "$K" != "libft.h" ]
 		then
-			sed -i '' 's/.*libft.*/#include \"..\/includes\/libft.h\"/' $K
+			sed -i '' '7,$s/.*libft.*/#include \"..\/includes\/libft.h\"/' $K
 		fi
 		cp $K $GENERATED_USER_TESTS_PATH/includes
 		cp $K $ASSERT_TESTS_PATH/includes
