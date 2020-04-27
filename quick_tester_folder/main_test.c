@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "./includes/ft_printf.h"
 #include <stdlib.h>
 
 int	main(int argc __attribute__((unused)), char *argv[])
@@ -23,6 +23,5 @@ int	main(int argc __attribute__((unused)), char *argv[])
 	p = &i;
 	p = NULL;
 	printf("-->|%-16.p|<--\n", p);
-	ft_printf("-->|%-16.p|<--\n", p);
 	return (0);
 }
