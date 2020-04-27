@@ -9,7 +9,29 @@ GENERATED_TESTS_PATH=$TESTER_DIR/utils/generated_tests
 GENERATED_USER_TESTS_PATH=$GENERATED_TESTS_PATH/generated_tests_usr_version
 ASSERT_TESTS_PATH=$GENERATED_TESTS_PATH/assert_tests
 
+###############################################################################
+########################## COLOR CODES ########################################
+REMOVE_FG="\033[38;5;196m"
+CREAT_FG="\033[38;5;46m"
+BLACK_FG="\033[38;5;0m"
+BLACK_BG="\033[48;5;0m"
+CLEAR_COLOR="\033[m"
+NAME_BG="\033[48;5;39m"
+OBJECTS_BG="\033[48;5;11m"
+RANLIB_BG="\033[48;5;172m"
+###############################################################################
+
 RECOMP_IF_NO_PERCENT=0
+
+function exit_error_compile_time()
+{
+	FUNC_RETURN=`echo "$?"`
+	if [ "$FUNC_RETURN" != "0" ]
+	then
+		printf "\033[3;38;5;1m 🤪  ABORT:\nDue to error at this compiling stage\033[m\n"
+		exit
+	fi
+}
 
 function update_programs()
 {
@@ -19,16 +41,17 @@ function update_programs()
 		rebuild_c_files_according_to_options
 	fi
 	cd $GENERATED_TESTS_PATH
-	printf "\ncompiling printf_breaker with the original printf()...\n"
+	printf "\n\n$CREAT_FG compiling printf_breaker with the original ${BLACK_FG}${NAME_BG}printf() $CLEAR_COLOR\n\n"
 	DEBUG_FLAF="DEBUG_FLAG=-g -f_sanitize=address"
 	if [ "$1" == "2" ]
 	then
 		DEBUG_FLAF=  
 	fi
 	make re $DEBUG_FLAG &> /dev/null
+	exit_error_compile_time
 	cp ./sources/*.c $GENERATED_USER_TESTS_PATH/sources/
 	cp specifiers_and_srcs.mk $GENERATED_USER_TESTS_PATH
-	printf "\ncompiling printf_breaker with ft_printf()...\n"
+	printf "\n$CREAT_FG compiling printf_breaker with ${BLACK_FG}${NAME_BG}ft_printf() $CLEAR_COLOR\n\n"
 	cd $GENERATED_USER_TESTS_PATH
 	for j in sources/test*.c
 	do
@@ -39,8 +62,9 @@ function update_programs()
 		done
 	done
 	make re $DEBUG_FLAG #&> /dev/null
+	exit_error_compile_time
 	cd $ASSERT_TESTS_PATH
-	printf "\ncompiling printf_breaker_returns with printf() and ft_printf()...\n\n"
+	printf "\n${CREAT_FG} compiling ${BLACK_FG}${NAME_BG}printf_breaker_returns ${CLEAR_COLOR} ${CREAT_FG}with printf() and ft_printf()...${CLEAR_COLOR}\n\n"
 	for j in sources/test*.c
 	do
 		for HEY in `ls includes/*.h`
@@ -49,6 +73,7 @@ function update_programs()
 		done
 	done
 	make re $DEBUG_FLAG # &> /dev/null
+	exit_error_compile_time
 	cd $TESTER_DIR
 }
 
@@ -57,6 +82,7 @@ function rebuild_c_files_according_to_options()
 	printf "(re)generating .c files according to your options:\n"
 	cd $GENERATION_TESTS_PATH
 	make &> /dev/null
+	exit_error_compile_time
 	./build_custom_functions
 	cd $TESTER_DIR
 }
@@ -64,8 +90,9 @@ function rebuild_c_files_according_to_options()
 function compiling_usr_printf_and_import_files()
 {
 	cd $PATH_TO_USER_PROJECT
-	printf "\ncompiling your libftprintf.a...\n"
+	printf "\n$CREAT_FG compiling your ${BLACK_FG}${NAME_BG}libftprintf.a $CLEAR_COLOR\n\n"
 	make &> /dev/null
+	exit_error_compile_time
 	if [ ! -f *.a  ]
 	then
 		printf "\033[31mfailure to build your 'libftprintf.a' or however '*.a' you called it\n\033[m"
@@ -170,7 +197,7 @@ do
 		continue;
 	elif [ "$FUNC_RETURN" == "2" ] && [ "$RECOMP_IF_NO_PERCENT" == "0" ]
 	then
-		printf "\nfor this special case '%%' we will recompile without '-g -fsanitize=address'\n"
+		printf "\n$CREAT_FG for this special case ${BLACK_FG}${NAME_BG}'%%' ${CLEAR_COLOR}${CREAT_COLOR} we will recompile WITHOUT '-g -fsanitize=address'$CLEAR_COLOR\n\n"
 		RECOMP_IF_NO_PERCENT=1
 		update_programs $FUNC_RETURN
 	elif [ "$FUNC_RETURN" -ge "3" ]
@@ -185,7 +212,7 @@ do
 	elif [ "$FUNC_RETURN" == "0" ] && [ "$RECOMP_IF_NO_PERCENT" == "1" ]
 	then
 		RECOMP_IF_NO_PERCENT=0
-		printf "\nrecompiling with '-g -fsanitize=address' after previously trying the %% specifier\n"
+		printf "\n$CREAT_FG recompiling WITH '-g -fsanitize=address' after previously trying the %% specifier$CLEAR_COLOR\n\n"
 		update_programs 1
 	fi
 	$GENERATED_TESTS_PATH/printf_breaker $text > $OUTPUTS_PATH/printf_output
