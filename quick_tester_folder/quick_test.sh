@@ -9,12 +9,13 @@ fi
 
 cp -rf  ./main_test.c ./sandbox/main_test_ft.c
 sed -i '' '16,$s/printf/ft_printf/g' ./sandbox/main_test_ft.c
+make
 if [ "$?" != 0 ]
 then
-	printf "\033[31mfailure to compile, you need to have ALL your project files here\n\033[m"
+	printf "\033[31mfailure to compile, you need to have ALL your project files here\n"
+	printf "as a example, you can do: \033[32mcp -rf path_to_ft_printf/* ./\033[m\n"
 	exit
 fi
-make
 mkdir -p ./includes
 mkdir -p ./sandbox/includes/
 for G in `ls *.h */*.h 2> /dev/null`
