@@ -6,7 +6,7 @@
 /*   By: charmstr <charmstr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 05:33:41 by charmstr          #+#    #+#             */
-/*   Updated: 2019/12/13 18:57:50 by charmstr         ###   ########.fr       */
+/*   Updated: 2020/10/06 09:52:48 by ykoh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	main(int argc, char *argv[])
 #endif
 
 #ifdef SPECIFIER_E
-	if (!my_ft_strncmp(argv[1], "n", 3) || !my_ft_strncmp(argv[1] , "all", 3))
+	if (!my_ft_strncmp(argv[1], "e", 3) || !my_ft_strncmp(argv[1] , "all", 3))
 		while (++i < 7)
 			test_func_e((double)i/3.333);
 #endif
