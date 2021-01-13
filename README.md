@@ -1,4 +1,12 @@
-# printf_lover_v2
+# PRINTF_LOVER_V2
+
+## CROSS TABLE 
+![alt text](https://github.com/charMstr/printf_lover_v2/blob/master/grep_harder.png)
+*note: this information was yielded with some thorough greps on gcc's error/warnings
+at compile time.*
+
+## CHECKER's DESCRIPTION
+
 this is a checker for ft_printf (42cursus november 2019)
 
 This checker generates .c files automatically according to the bonuses you
@@ -24,6 +32,8 @@ keep in mind that this tester excludes in the generation process of *.c files
 any case resulting in a warning at compile time. Also it dont check for leaks.
 The code ccould be addapted to testing extra extra flags and extr extra
 conversion specifiers... see defines in .h files
+
+## CHECKER's USAGE
 
 🖖🏿 how to use the checker 🖖🏿
 
